@@ -1,0 +1,15 @@
+{
+    "name": "Localization",
+    "alias": "localization",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Localization\\Providers\\LocalizationServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "Helpers/helpers.php"
+    ],
+    "requires": []
+}
