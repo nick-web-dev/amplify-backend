@@ -11,14 +11,13 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        $this->validate(
-            request(),
+        $request->validate(
             [
 
                 'email' => [
                     'required',
                     Rule::exists('users', 'email')->where(function ($q) {
-                        return $q->whereNull('deleted_at')->where('is_active', 1);
+                        return $q->whereNull('deleted_at');
                     })
                 ],
                 'password' => 'required|min:8',
