@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Modules\Auth\Http\Controllers\AuthController;
 use Modules\Auth\Http\Controllers\LoginController;
+use Modules\Auth\Http\Controllers\RolesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,6 @@ Route::middleware(['auth:api'])->get('/user', function (Request $request) {
     return $user;
 });
 Route::post('/login', [LoginController::class, 'login']);
+
+Route::apiResource('roles', RolesController::class);
+Route::get('permissions', [RolesController::class, 'getPermissions']);

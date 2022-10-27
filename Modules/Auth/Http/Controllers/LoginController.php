@@ -2,9 +2,11 @@
 
 namespace Modules\Auth\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class LoginController extends Controller
@@ -24,8 +26,9 @@ class LoginController extends Controller
             ]
         );
         $credentials = request()->only(['email', 'password']);
-        if (Auth::attempt($credentials, true)) {
-            $user = Auth::user();
+        $user = User::where('email', $request->email)->first();
+        if ($user && Hash::check($request->password, $user->password)) {
+
             $user->setAppends(['all_permissions']);
             $token = $user->createToken('User Token');
 
