@@ -28,3 +28,4 @@ Route::middleware(['auth:api'])->get('/user', function (Request $request) {
 Route::post('/login', [LoginController::class, 'login']);
 
 Route::apiResource('roles', RolesController::class);
+Route::get('permissions', [RolesController::class, 'getPermissions']);

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Auth\Transformers\RolesResource;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RolesController extends Controller
@@ -67,5 +68,13 @@ class RolesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function getPermissions(Request $request)
+    {
+        $this->authorize('viewAny', Role::class);
+        $permissions = Permission::where('guard_name', 'admin')->get();
+        return $permissions;
     }
 }
