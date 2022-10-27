@@ -14,9 +14,6 @@
         }
     },
     "autoload": {
-        "files": [
-            "Helpers/helpers.php"
-        ],
         "psr-4": {
             "Modules\\Localization\\": ""
         }
