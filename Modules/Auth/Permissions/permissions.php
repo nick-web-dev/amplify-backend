@@ -2,7 +2,7 @@
 return [
     // Roles
     [
-        'name' => "can login",
+        'name' => "can-login",
     ],
     [
         'name' => "view-roles"
