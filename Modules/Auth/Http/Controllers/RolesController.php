@@ -41,6 +41,7 @@ class RolesController extends Controller
             'name' => 'required|unique:roles,name',
             'guard_name' => "required|in:admin",
             "permissions" => "required|array|min:1",
+            // TO DO:: validate permission by guard
             "permissions.*" => "required|exists:premissions,id"
         ]);
         $role = Role::create([
@@ -67,9 +68,20 @@ class RolesController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
         //
+        $request->validate([
+            'name' => 'required|unique:roles,name,' . $role->id,
+            "permissions" => "required|array|min:1",
+            // TO DO:: validate permission by guard
+            "permissions.*" => "required|exists:premissions,id"
+        ]);
+        $role->update([
+            'name' => $request->name
+        ]);
+        $role->givePermissionTo($request->permissions);
+        return $role;
     }
 
     /**
@@ -77,9 +89,18 @@ class RolesController extends Controller
      * @param int $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
         //
+        if ($role->users()->count()) {
+            abortJson([
+                'message' => trans("Conflict can't delete role: the role has users assigned to it"),
+
+            ], 409);
+        } else {
+            $role->delete();
+            return 'deleted';
+        }
     }
 
 
