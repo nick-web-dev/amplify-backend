@@ -37,6 +37,18 @@ class RolesController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'name' => 'required|unique:roles,name',
+            'guard_name' => "required|in:admin",
+            "permissions" => "required|array|min:1",
+            "permissions.*" => "required|exists:premissions,id"
+        ]);
+        $role = Role::create([
+            'guard_name' => $request->guard_name,
+            'name' => $request->name
+        ]);
+        $role->givePermissionTo($request->permissions);
+        return $role;
     }
 
     /**
