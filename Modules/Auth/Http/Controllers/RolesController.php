@@ -42,7 +42,7 @@ class RolesController extends Controller
             'guard_name' => "required|in:admin",
             "permissions" => "required|array|min:1",
             // TO DO:: validate permission by guard
-            "permissions.*" => "required|exists:premissions,id"
+            "permissions.*" => "required|exists:permissions,id"
         ]);
         $role = Role::create([
             'guard_name' => $request->guard_name,
