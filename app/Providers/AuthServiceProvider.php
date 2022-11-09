@@ -6,6 +6,10 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 use Laravel\Passport\Passport;
 use Modules\Auth\Policies\RolesPolicy;
+use Modules\Campaign\Entities\DestinationUrl;
+use Modules\Campaign\Entities\Metrics;
+use Modules\Campaign\Policies\DestinationUrlPolicy;
+use Modules\Campaign\Policies\MetricsPolicy;
 use Spatie\Permission\Models\Role;
 
 class AuthServiceProvider extends ServiceProvider
@@ -19,6 +23,7 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
 
         Role::class => RolesPolicy::class,
+        Metrics::class => MetricsPolicy::class,
     ];
 
     /**

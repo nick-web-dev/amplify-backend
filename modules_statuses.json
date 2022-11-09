@@ -1,4 +1,6 @@
 {
     "Localization": true,
-    "Auth": true
+    "Auth": true,
+    "Campaign": true,
+    "Linquer": true
 }

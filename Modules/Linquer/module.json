@@ -1,0 +1,13 @@
+{
+    "name": "Linquer",
+    "alias": "linquer",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Linquer\\Providers\\LinquerServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
