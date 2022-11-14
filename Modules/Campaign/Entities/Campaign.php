@@ -22,6 +22,12 @@ class Campaign extends Model
     {
         return $this->hasMany(DestinationUrl::class, 'campaign_id');
     }
+
+    public function client()
+    {
+        return $this->belongsTo(CampaignClient::class, 'campaign_client_id');
+    }
+
     protected static function newFactory()
     {
         return \Modules\Campaign\Database\factories\CampaignFactory::new();

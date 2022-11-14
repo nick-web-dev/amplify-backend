@@ -23,4 +23,9 @@ class DestinationUrl extends Model
     {
         return \Modules\Campaign\Database\factories\DestinationUrlFactory::new();
     }
+
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class);
+    }
 }

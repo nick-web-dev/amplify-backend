@@ -20,7 +20,7 @@ class TasksController extends Controller
         //
         $perPage = request()->itemsPerPage ?: 10;
 
-        $query = Task::query();
+        $query = Task::with('destinationUrl.campaign', 'destinationUrl.campaign.client');
 
         $perPage = $perPage == -1 ? $query->count() : $perPage;
 
