@@ -14,7 +14,6 @@ class LanguagesController extends Controller
 
     public function languageFiles($lang)
     {
-
         $lang = \Str::lower($lang);
         \Cache::forget('lang-' . $lang . '.js');
         $strings = \Cache::remember('lang-{$lang}.js', 0, function () use ($lang) {

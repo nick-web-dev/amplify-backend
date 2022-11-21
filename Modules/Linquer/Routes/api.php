@@ -16,7 +16,6 @@ use Modules\Linquer\Http\Controllers\TasksController;
 */
 
 Route::prefix('linquer')->middleware('auth:api')->group(function () {
-
     Route::get('tasks', [TasksController::class, 'index']);
 });
 Route::middleware('auth:api')->get('/linquer', function (Request $request) {
