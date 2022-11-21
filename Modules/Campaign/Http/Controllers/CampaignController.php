@@ -14,11 +14,13 @@ class CampaignController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        return response()->json([
+            'data'  => Campaign::with('client')->get()
+        ]);
     }
 
     /**
