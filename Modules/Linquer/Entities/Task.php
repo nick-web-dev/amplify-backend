@@ -6,6 +6,8 @@ use App\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Gate;
+use Modules\Campaign\Entities\Campaign;
+use Modules\Campaign\Entities\DestinationUrl;
 use Modules\Linquer\Policies\TaskPolicy;
 
 class Task extends Model
@@ -32,4 +34,11 @@ class Task extends Model
     {
         return \Modules\Linquer\Database\factories\TaskFactory::new();
     }
+
+    public function DestinationUrl()
+    {
+        return $this->belongsTo(DestinationUrl::class);
+    }
+
+
 }
